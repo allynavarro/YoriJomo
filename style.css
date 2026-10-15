@@ -1,0 +1,187 @@
+/* ============ Yori Jomo — design tokens (fra Figma) ============ */
+:root {
+  --paper-white-500: #f3efe7;
+  --paper-white-700: #908878;
+  --eggshell: #fdfaf4;
+  --black-brown: #311c10;
+  --olive-500: #6e6f55;
+  --olive-50: #f2f4bf;
+  --text-brown: #412600;
+  --nav-grey: #737373;
+
+  --serif: "Inria Serif", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, sans-serif;
+
+  --page: 1440px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--eggshell); color: var(--black-brown); font-family: var(--sans); }
+img { display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+main, .nav, .footer { max-width: var(--page); margin: 0 auto; }
+
+/* ============ Knapper (WF / Knap) ============ */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 20px;
+  font: 400 18px/1 var(--sans);
+  border: 0; cursor: pointer;
+  transition: background .25s ease, color .25s ease, transform .3s ease;
+  position: relative;
+}
+.btn--light { background: var(--paper-white-500); color: var(--black-brown); }
+.btn--light:hover {
+  background: #908878;
+  color: var(--paper-white-500);
+  transform: scale(1.03);
+}
+.btn--light::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 52px;
+  background-image: url('assets/ikon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 0;
+  opacity: 0;
+  transition: width .3s ease, opacity .3s ease, margin-right .3s ease;
+  overflow: hidden;
+}
+.btn--light:hover::before {
+  width: 52px;
+  margin-right: 12px;
+  opacity: 1;
+}
+.btn--light:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============ Navigation ============ */
+.nav {
+  height: 80px; padding: 0 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--paper-white-500);
+  border-bottom: 1px solid var(--paper-white-700);
+}
+.nav__links { display: flex; gap: 32px; font: 400 13px/1 "Inter", sans-serif; color: var(--nav-grey); }
+.nav__links a:hover { color: var(--black-brown); }
+.nav__links:last-child { justify-content: flex-end; }
+.nav__links { width: 260px; }
+
+/* ============ Hero-karrusel ============ */
+.hero { position: relative; height: 752px; overflow: hidden; }
+.hero__track {
+  position: absolute; top: 0; left: 0;
+  display: flex; gap: 5px;
+  animation: slide 20s linear infinite;
+}
+.hero__track img { width: 500px; height: 752px; object-fit: cover; flex: none; }
+@keyframes slide { to { transform: translateX(-3030px); } }   /* 6 billeder × (500 + 5 gap) */
+
+.hero__box {
+  position: absolute; left: 0; top: 376px; width: 498px;
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 16px; align-items: flex-start;
+  background: rgba(49, 28, 16, .5);
+  color: var(--paper-white-500);
+}
+.hero__title { font: 400 48px/1.2 var(--serif); }
+.hero__title .accent { color: var(--olive-50); }
+.hero__text { font: 400 20px/1.2 var(--sans); }
+
+/* ============ About ============ */
+.about {
+  display: flex; align-items: center; justify-content: center; gap: 80px;
+  padding: 48px 100px;
+}
+.about__text { width: 462px; display: flex; flex-direction: column; gap: 32px; }
+.about__title { font: 400 64px/1.2 var(--serif); color: var(--text-brown); }
+.about__body { font: 400 16px/1.25 var(--sans); color: var(--text-brown); padding: 5px 2px; }
+.about__body p + p { margin-top: 20px; }
+.about__body p.gap { margin-top: 40px; }
+.about__link {
+  display: inline-flex; align-items: center; gap: 9px;
+  font: 400 16px/1 var(--sans); color: var(--text-brown);
+}
+.about__link img { transition: transform .25s ease; }
+.about__link:hover img { transform: translateX(4px); }
+.about__tree { width: 532px; height: 651px; flex: none; position: relative; }
+.about__tree img { position: absolute; left: 30px; top: 30px; width: 514px; height: 598px; }
+
+/* ============ Bestsellers ============ */
+.bestsellers {
+  display: flex; flex-direction: column; align-items: center; gap: 32px;
+  padding: 48px 100px;
+}
+.section-title { font: 400 64px/1.2 var(--serif); text-align: center; }
+.products { display: flex; gap: 32px; justify-content: center; }
+
+.card { width: 340px; display: flex; flex-direction: column; gap: 12px; }
+.card__img { position: relative; display: block; width: 340px; height: 416px; overflow: hidden; }
+.card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.card__img:hover img { transform: scale(1.03); }
+.tag {
+  position: absolute; left: 0; height: 20px; padding: 0 4px;
+  display: flex; align-items: center;
+  font: 400 12px/1 var(--sans); color: #fff;
+}
+.tag--new { top: 56px; background: var(--olive-500); }
+.tag--mat { top: 94px; background: var(--black-brown); }
+.card__info { display: flex; justify-content: space-between; align-items: flex-end; white-space: nowrap; }
+.card__name { font: 400 24px/1.2 var(--serif); color: var(--black-brown); }
+.card__price { font: 400 18px/1.2 var(--sans); color: var(--paper-white-700); }
+
+.dots { display: flex; gap: 6px; align-items: center; height: 10px; }
+.dots li { width: 10px; height: 10px; border-radius: 50%; background: var(--c); border: 1px solid var(--paper-white-700); }
+.dots li.more { border: 0; width: auto; height: auto; background: none; font: 400 10px/1 var(--sans); color: var(--paper-white-700); }
+.dots li.pattern { background: repeating-linear-gradient(45deg, #3b2f2b 0 2px, #cfc8bf 2px 4px); }
+
+/* ============ Instagram ============ */
+.insta { display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 48px 100px; }
+.insta__head { width: 100%; padding: 0 48px; display: flex; justify-content: space-between; align-items: flex-end; }
+.insta__title { font: 300 36px/1.2 var(--serif); }
+.insta__link { font: 400 18px/1.2 var(--sans); text-decoration: underline; }
+.insta__grid { display: flex; gap: 16px; justify-content: center; align-items: center; }
+.insta__grid img { width: 166px; height: 250px; object-fit: cover; }
+.insta__grid .insta__wide { width: 298px; border: 1px solid #e4ddd0; }
+
+/* ============ Newsletter ============ */
+.newsletter {
+  background: var(--olive-500); color: var(--eggshell);
+  padding: 48px 100px;
+  display: flex; flex-direction: column; align-items: center; gap: 32px;
+}
+.newsletter__title { font: 400 48px/1.2 var(--serif); }
+.newsletter__text { font: 400 20px/1.2 var(--sans); text-align: center; }
+.newsletter__form {
+  width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; row-gap: 32px;
+}
+.field { display: flex; flex-direction: column; gap: 17px; }
+.field__label { font: 400 24px/1.2 var(--serif); }
+.field input {
+  height: 59px; background: none; border: 0;
+  border-bottom: 1px solid var(--eggshell);
+  font: 400 16px/1 var(--sans); color: var(--eggshell);
+  outline: none;
+}
+.field input::placeholder { color: rgba(253, 250, 244, .4); }
+.field input:focus { border-bottom-width: 2px; }
+.newsletter__btn { grid-column: 1 / -1; justify-self: end; }
+
+/* ============ Footer ============ */
+.footer {
+  background: var(--paper-white-500);
+  border-top: 1px solid var(--paper-white-700);
+  padding: 48px 64px;
+  display: flex; align-items: center; justify-content: center; gap: 380px;
+}
+.footer__brand { width: 280px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; font: 400 16px/1.25 var(--sans); }
+.footer__cols { display: flex; gap: 80px; font: 400 12px/1 var(--sans); white-space: nowrap; }
+.footer__cols ul { display: flex; flex-direction: column; gap: 12px; }
+.footer__cols a:hover, .footer__cols a.u { text-decoration: underline; }
